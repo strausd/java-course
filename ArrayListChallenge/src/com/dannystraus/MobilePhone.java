@@ -1,13 +1,11 @@
 package com.dannystraus;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Created by dstraus on 3/22/17.
  */
 public class MobilePhone {
-    private static Scanner scan = new Scanner(System.in);
     private String myNumber;
     private String name;
     private ContactsApp contacts = new ContactsApp();
