@@ -1,11 +1,14 @@
 package com.dannystraus;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by dstraus on 3/22/17.
  */
 public class ContactsApp {
+
+    private static Scanner scan = new Scanner(System.in);
 
     private ArrayList<Contact> allContacts;
 
@@ -13,15 +16,18 @@ public class ContactsApp {
         this.allContacts = new ArrayList<Contact>();
     }
 
-    public boolean createContact(String name, String number) {
+    public void createContact() {
+        System.out.print("New contact name: ");
+        String name = scan.nextLine();
         if(findContact(name) >= 0) {
             System.out.println("Contact name already in use.");
-            return false;
+            System.out.println("What would you like to do now?");
         } else {
+            System.out.print("New contact phone number: ");
+            String number = scan.nextLine();
             allContacts.add(new Contact(name, number));
-            return true;
+            System.out.println("What would you like to do now?");
         }
-
     }
 
     public void listContacts() {
@@ -31,19 +37,52 @@ public class ContactsApp {
         System.out.println("What would you like to do now?");
     }
 
-    public void editContact(String name, String number, int i) {
-        allContacts.get(i).setNumber(number);
+    public void editContact() {
+        System.out.print("Name of contact to edit: ");
+        String name = scan.nextLine();
+        int i = findContact(name);
+        if(i < 0) {
+            System.out.println("Contact does not exist.");
+            System.out.println("What would you like to do now?");
+        } else {
+            System.out.print("New phone number for " + name + ": ");
+            String number = scan.nextLine();
+            allContacts.get(i).setNumber(number);
+            System.out.println("What would you like to do now?");
+        }
     }
 
-    public void deleteContact(int i) {
-        allContacts.remove(i);
+    public void deleteContact() {
+        System.out.print("Name of contact to delete: ");
+        String name = scan.nextLine();
+        int i = findContact(name);
+        if(i < 0) {
+            System.out.println("Contact does not exist.");
+            System.out.println("What would you like to do now?");
+        } else {
+            allContacts.remove(i);
+            System.out.println(name + " deleted.");
+            System.out.println("What would you like to do now?");
+        }
+
     }
 
-    public void queryContact(int i) {
-        String name = allContacts.get(i).getName();
-        String number = allContacts.get(i).getNumber();
+    public void queryContact() {
+        System.out.print("Name of contact to find: ");
+        String name = scan.nextLine();
+        int i = findContact(name);
+        if(i < 0) {
+            System.out.println("Contact does not exist.");
+            System.out.println("What would you like to do now?");
+        } else {
+            name = allContacts.get(i).getName();
+            String number = allContacts.get(i).getNumber();
 
-        System.out.println(name + ": " + number);
+            System.out.println(name + ": " + number);
+
+            System.out.println("What would you like to do now?");
+        }
+
     }
 
     public int findContact(String name) {
