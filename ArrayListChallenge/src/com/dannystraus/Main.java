@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
     private static Scanner scan = new Scanner(System.in);
 
-    private static MobilePhone danny = new MobilePhone("469-443-8771", "Danny");
+    private static MobilePhone danny = new MobilePhone("123-456-789", "Danny");
 
     public static void main(String[] args) {
 	    boolean isRunning = true;
